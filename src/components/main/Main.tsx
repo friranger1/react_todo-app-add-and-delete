@@ -6,12 +6,14 @@ type Props = {
   visibleTodos: Todo[];
   tempTodo: Todo | null;
   handlerDeleteTodo: (id: number) => void;
+  deleting: number | null;
 };
 
 export const Main: React.FC<Props> = ({
   visibleTodos,
   tempTodo,
   handlerDeleteTodo,
+  deleting,
 }) => {
   return (
     <section className="todoapp__main" data-cy="TodoList">
@@ -22,6 +24,7 @@ export const Main: React.FC<Props> = ({
             toDo={toDo}
             isLoading={false}
             handlerDeleteTodo={handlerDeleteTodo}
+            deleting={deleting === toDo.id}
           />
         );
       })}
@@ -31,6 +34,7 @@ export const Main: React.FC<Props> = ({
           toDo={tempTodo}
           isLoading={true}
           handlerDeleteTodo={handlerDeleteTodo}
+          deleting={deleting === 0}
         />
       )}
     </section>

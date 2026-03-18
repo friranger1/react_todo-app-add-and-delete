@@ -40,17 +40,15 @@ export const Footer: React.FC<Props> = ({
           )}
         </nav>
       }
-
-      {hasCompleted && (
-        <button
-          type="button"
-          className="todoapp__clear-completed"
-          data-cy="ClearCompletedButton"
-          onClick={onClear}
-        >
-          Clear completed
-        </button>
-      )}
+      <button
+        type="button"
+        className="todoapp__clear-completed"
+        data-cy="ClearCompletedButton"
+        onClick={onClear}
+        disabled={!hasCompleted}
+      >
+        Clear completed
+      </button>
     </footer>
   );
 };
