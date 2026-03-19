@@ -154,7 +154,6 @@ export const App: React.FC = () => {
       <div className="todoapp__content">
         <Header
           isAllCompleted={isAllCompleted}
-          toDosCount={toDos.length}
           inputRef={inputRef}
           handleAddTodo={handleAddTodo}
           isAdding={isAdding}
@@ -169,7 +168,7 @@ export const App: React.FC = () => {
           deleting={deleting}
         />
 
-        {toDos.length > 0 && (
+        {toDos.length === 0 ? '' :
           <Footer
             filter={filter}
             activeCount={toDos.filter(todo => !todo.completed).length}
@@ -177,7 +176,7 @@ export const App: React.FC = () => {
             onFilterChange={setFilter}
             onClear={handleClearCompleted}
           />
-        )}
+        }
 
         <ErrorNotification error={error} onClose={() => setError(null)} />
       </div>

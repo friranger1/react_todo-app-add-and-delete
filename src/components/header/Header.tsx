@@ -3,7 +3,6 @@ import cn from 'classnames';
 
 type Props = {
   isAllCompleted: boolean;
-  toDosCount: number;
   inputRef: React.RefObject<HTMLInputElement>;
   handleAddTodo: (event: React.FormEvent) => void;
   isAdding: boolean;
@@ -13,7 +12,6 @@ type Props = {
 
 export const Header: React.FC<Props> = ({
   isAllCompleted,
-  toDosCount,
   inputRef,
   handleAddTodo,
   isAdding,
@@ -22,13 +20,11 @@ export const Header: React.FC<Props> = ({
 }) => {
   return (
     <header className="todoapp__header">
-      {toDosCount > 0 && (
         <button
           type="button"
           className={cn('todoapp__toggle-all', { active: isAllCompleted })}
           data-cy="ToggleAllButton"
         />
-      )}
 
       <form onSubmit={handleAddTodo}>
         <input
