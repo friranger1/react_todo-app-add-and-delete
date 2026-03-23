@@ -18,14 +18,12 @@ function request<T>(
 ): Promise<T> {
   const options: RequestInit = { method };
 
-  if (method !== 'GET') {
+  if (data) {
+    // We add body and Content-Type only for the requests with data
+    options.body = JSON.stringify(data);
     options.headers = {
       'Content-Type': 'application/json; charset=UTF-8',
     };
-
-    if (data !== null) {
-      options.body = JSON.stringify(data);
-    }
   }
 
   // DON'T change the delay it is required for tests
@@ -33,7 +31,7 @@ function request<T>(
     .then(() => fetch(BASE_URL + url, options))
     .then(response => {
       if (!response.ok) {
-        throw new Error(`Request failed with status ${response.status}`);
+        throw new Error();
       }
 
       return response.json();
