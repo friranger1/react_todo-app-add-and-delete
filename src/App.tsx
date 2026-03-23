@@ -56,6 +56,7 @@ export const App: React.FC = () => {
 
   function handleAddTodo(event: React.FormEvent) {
     event.preventDefault();
+    event.stopPropagation();
 
     const title = inputValue.trim();
 
